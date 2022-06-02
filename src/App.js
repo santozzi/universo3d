@@ -1,17 +1,17 @@
-import logo from './images/logo.png';
+import { NavBar } from './components/navBar/navBar.js';
 import './App.css';
-
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <>
+      <header>
+        <NavBar />
+      </header>
+      <main>
         <h1>
           Próximamente
         </h1>
-
-      </header>
-    </div>
+      </main>
+    </>
   );
 }
 
