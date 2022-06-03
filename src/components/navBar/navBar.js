@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { LogoText } from './logoText/logoText';
+import { Botones } from './botones/botones';
 import './navBar.css';
+import { NavLinks } from './navLinks/navLinks';
+
+
 
 export const NavBar = () => {
     const [state, setstate] = useState(true);
@@ -13,31 +17,10 @@ export const NavBar = () => {
     return (
 
         <div className={`navbar-container-default ${state ? 'navbar-container' : 'responsive-navbar-container'}`} >
+            <LogoText state={state} />
+            <NavLinks state={state} />
 
-            <div className={`navbar-logo-text${!state ? ' responsive-navbar-logo-text' : ''}`}>
-                <div>universo</div>
-                <div>3d</div>
-            </div>
-
-            <nav className={`navbar-default${!state ? ' responsive-navbar' : ''}`}>
-                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Mates</a>
-                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Llaveros</a>
-                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Insumos</a>
-                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Cortadores</a>
-            </nav>
-
-            <button
-                className={`navbar-btn ${state ? 'navbar-close-btn' : 'responsive-navbar-close-btn'}`}
-                onMouseUp={showNavBar}
-            >
-                <FaTimes />
-            </button>
-            <button
-                className={`navbar-btn ${state ? 'navbar-bars-btn' : 'responsive-navbar-bars-btn'}`}
-                onMouseUp={showNavBar}
-            >
-                <FaBars />
-            </button>
+            <Botones state={state} funcion={showNavBar} />
         </div>
     );
 }

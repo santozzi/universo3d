@@ -1,16 +1,14 @@
-import { NavBar } from './components/navBar/navBar.js';
+
 import './App.css';
+import { Header } from './components/header/header.js';
+import { Main } from './components/main/main.js';
+
 function App() {
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
-      <main>
-        <h1>
-          Próximamente
-        </h1>
-      </main>
+      <Header />
+      <Main />
+
     </>
   );
 }

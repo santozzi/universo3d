@@ -1,0 +1,18 @@
+.navbar-btn{
+
+    
+    cursor:pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--textColor);
+    margin-right: 20px;
+    font-size: 23px;
+   
+  }
+  .navbar-btn-hidden{
+
+    visibility: hidden;
+    opacity: 0;
+    
+  }
