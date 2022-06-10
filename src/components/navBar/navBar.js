@@ -17,7 +17,7 @@ export const NavBar = () => {
     return (
 
         <div className={`navbar-container-default ${state ? 'navbar-container' : 'responsive-navbar-container'}`} >
-            <LogoText state={state} />
+            <LogoText state={state} text='universo 3d' />
             <NavLinks state={state} />
 
             <Botones state={state} funcion={showNavBar} />
