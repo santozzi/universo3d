@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
+import './cartWidjet.css';
 export const CartWidjet = () => {
     return (
-        <button className='navbar-btn'><FaShoppingCart /></button>
+        <button className='cart-widjet-btn'><FaShoppingCart /></button>
     );
 }

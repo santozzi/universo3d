@@ -1,0 +1,22 @@
+@media only screen and (max-width: 820px){
+    .card-hold-mobile {
+        display: flex;
+        
+        justify-content: left;
+        flex-direction: column;
+        background-color: white;
+        
+        box-shadow: 0.5rem 0.5rem 0.51rem #00000020;
+        margin: 2rem;
+        
+    }
+    
+    .card-hold-mobile-title {
+        text-align: center;
+        font-size: 3rem;
+        margin: 2rem;
+        border-bottom: 0.1rem solid #eeeeee;
+        padding-bottom: 2rem;
+    
+    }
+    }

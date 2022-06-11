@@ -22,10 +22,62 @@ background-color: var(--maincolor) ;
 color: var(--textColor);
 
 }
+.navbar-default{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  flex-direction: row;
+  background-color: var(--maincolor);
+ 
+}
+/*BOTONES*/
+.navbar-btn{
 
+    
+  cursor:pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--textColor);
+  margin-right: 20px;
+  font-size: 23px;
+ 
+}
+.navbar-btn-hidden{
 
-
-
+  visibility: hidden;
+  opacity: 0;
+  
+}
+/*LINKS*/
+.navbar-link-default{
+  margin: 0 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--textColor);
+  font-size: 17px;
+  user-select: none;
+  
+  }
+  .navbar-link-default:hover{
+  color:var(--secondaryColor)
+  }
+  .navbar-logo-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+    color: var(--textColor);
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-left: 2rem;
+    user-select: none;
+    text-align: center;
+    }
 
 
 /*Estilos para cuando el tamaño de la pantalla es menor o igual a 1024px*/
@@ -60,6 +112,54 @@ color: var(--textColor);
 
 }
 
+/*BOTONES*/
+
+/*BTN-BARS*/
+.responsive-navbar-bars-btn{
+  visibility: hidden;
+  opacity: 0;
+}
+
+/*state = true*/
 
 
+.navbar-bars-btn{
+display: flex;
+visibility: visible;
+opacity: 1;
+padding-bottom: 3px;
+}
+/*BTN-CLOSE*/
+.responsive-navbar-close-btn{
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  padding-top: 20px;
+}
+.navbar-close-btn{
+  visibility: hidden;
+  opacity: 0;
+  }
+  /*LINKS*/
+  .navbar-link{
+
+    display: none;
+    opacity: 0;
+  }
+  .responsive-navbar{
+      margin-top: 50px;
+      margin-bottom: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: 0.3s;
+      width: 100%;
+      
+  }
+  
+  .responsive-navbar-logo-text{
+    display: none;
+  }
 }

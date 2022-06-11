@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { LogoText } from './logoText/logoText';
-import { Botones } from './botones/botones';
 import './navBar.css';
-import { NavLinks } from './navLinks/navLinks';
+import { FaBars } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
+import { CartWidjet } from './cartWidjet/cartWidjet';
 
 
 
@@ -17,10 +17,33 @@ export const NavBar = () => {
     return (
 
         <div className={`navbar-container-default ${state ? 'navbar-container' : 'responsive-navbar-container'}`} >
-            <LogoText state={state} text='universo 3d' />
-            <NavLinks state={state} />
+            <div className={`navbar-logo-text${!state ? ' responsive-navbar-logo-text' : ''}`}>
+                <div>universo 3d</div>
+            </div>
+            <nav className={`navbar-default${!state ? ' responsive-navbar' : ''}`}>
+                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Mates</a>
+                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Llaveros</a>
+                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Insumos</a>
+                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Cortadores</a>
+                <CartWidjet />
+            </nav>
+            {
+                (state) ?
+                    <button
+                        className={`navbar-btn navbar-btn-hidden ${state ? 'navbar-bars-btn' : 'responsive-navbar-bars-btn'}`}
+                        onMouseUp={showNavBar}
+                    >
+                        <FaBars />
+                    </button>
+                    :
+                    <button
+                        className={`navbar-btn navbar-btn-hidden${state ? ' navbar-close-btn' : ' responsive-navbar-close-btn'}`}
+                        onMouseUp={showNavBar}
+                    >
+                        <FaTimes />
+                    </button>
+            }
 
-            <Botones state={state} funcion={showNavBar} />
         </div>
     );
 }

@@ -1,1 +1,16 @@
-@import url(../botones/botones.css);
+.cart-widjet-btn{
+    cursor:pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--textColor);
+    margin-right: 20px;
+    font-size: 23px;
+   
+  }
+  .cart-widjet-btn:hover{
+
+    color: var(--secondaryColor);
+
+   
+  }
