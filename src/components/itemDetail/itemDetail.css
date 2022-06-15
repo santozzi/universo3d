@@ -1,0 +1,67 @@
+.item-detail-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+    margin: 5rem;
+    background-color: white;
+    width: 90rem;
+    height: 70rem;
+    box-shadow: 0.1rem 0.1rem 0.1rem  #00000020;
+    border-radius: 2rem;
+    border: 0.01rem solid #eeeeee;
+}
+.item-detail-image-description{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 60rem;
+    
+}
+.item-detail-image-container{
+    box-shadow: 0.2rem 0.2rem 0.2rem #00000050;
+    max-width: 30rem;
+}
+.item-detail-image{
+    width: 100%;
+    border-radius: 0rem;
+}
+.item-detail-description{
+    font-size: 2rem;
+    font-family: Roboto, sans-serif;
+    text-align: justify;
+    width: 50rem;
+    margin: 2rem;
+    padding: 2rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem  #00000020;
+}
+.item-detail-resume{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 30rem;
+    background-color: #eeeeee40;
+    height: 100%;
+    gap:1.2rem;
+    box-shadow: 0.1rem 0.1rem 0.1rem  #00000020;
+    border-radius: 2rem;
+    border: 0.01rem solid var(--maincolor);
+  
+    
+}
+.item-detail-title{
+    font-family: Roboto, sans-serif;
+    font-size: 3rem;
+}
+.item-detail-price{
+    font-family: Roboto, sans-serif;
+    font-size: 4rem;
+}
+.item-detail-stock{
+    font-family: Roboto, sans-serif;
+    font-size: 2.5rem;
+}

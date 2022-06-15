@@ -24,7 +24,9 @@ export const ItemListContainer = () => {
     const [products, setProducts] = useState(preloadItem)
 
     useEffect(() => {
-        getProducts().then(prod => setProducts(prod))
+        getProducts().then(prod => setProducts(prod));
+
+
     }, [products])
 
     return (
