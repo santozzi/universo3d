@@ -3,10 +3,10 @@ import { getProductById } from '../../models/products.model'
 import { ItemDetail } from '../itemDetail/itemDetail';
 export const ItemDetailContainer = () => {
     const [product, setProduct] = useState({});
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-
+        setLoading(true)
         console.log(`estado de loading ${loading}`);
         getProductById(2)
             .then(prod => {
@@ -19,7 +19,7 @@ export const ItemDetailContainer = () => {
         return () => { }
 
 
-    }, [product])
+    }, [])
 
 
 
