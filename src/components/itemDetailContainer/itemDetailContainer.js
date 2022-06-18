@@ -3,14 +3,30 @@ import { getProductById } from '../../models/products.model'
 import { ItemDetail } from '../itemDetail/itemDetail';
 export const ItemDetailContainer = () => {
     const [product, setProduct] = useState({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getProductById(4).then(prod => setProduct(prod)).catch(err => console.log(err))
-    }, [])
+
+        console.log(`estado de loading ${loading}`);
+        getProductById(2)
+            .then(prod => {
+                setProduct(prod)
+                setLoading(false)
+            })
+            .catch(err => console.log(err))
+
+
+        return () => { }
+
+
+    }, [product])
 
 
 
     return (
-        <ItemDetail key={product.id} item={product} />
+
+
+        <ItemDetail key={product.id} item={product} loading={loading} />
+
     )
 }

@@ -6,8 +6,6 @@ const products =
         { id: 3, title: "MinionMate", price: 820, stock: 35, description: "Mate de plástico PLA, con interior de platico especial para infusiones, este artículo es espacial para casitas de fiestas y una tarde en la plaza del barrio", pictureUrl: "https://scontent.fbhi1-1.fna.fbcdn.net/v/t39.30808-6/278608174_106288645397612_7830392067714234810_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=0debeb&_nc_ohc=IVN_YM9uoc4AX_LiBsv&tn=7iuhlvP_SnMWHU6A&_nc_ht=scontent.fbhi1-1.fna&oh=00_AT-5aMmoOF1kdIEBxryhJU4rSYHM8EBAj1MXp1sIqPKiPg&oe=62A6F81F" },
         { id: 4, title: "PokeMate", price: 800, stock: 12, description: "Mate de plástico PLA, con interior de platico especial para infusiones, este artículo es espacial para casitas de fiestas y una tarde en la plaza del barrio", pictureUrl: "https://scontent.fbhi1-1.fna.fbcdn.net/v/t39.30808-6/279016883_106288682064275_2192707750496888048_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=0debeb&_nc_ohc=HTureYD26CEAX-xp4ha&tn=7iuhlvP_SnMWHU6A&_nc_ht=scontent.fbhi1-1.fna&oh=00_AT9GNTusvBKuo43ZPcLaJsdEUBvEQ-IvA-g7tjUq8-W3vg&oe=62A815A4" }
 
-
-
     ];
 
 export const getProducts = () => {

@@ -7,6 +7,7 @@ import './main.css';
 
 export const Main = () => {
     /*             <ItemListContainer />
+    
 <ItemCount stock='15' initial='1' product='MateBender' /> */
     return (
         <main>

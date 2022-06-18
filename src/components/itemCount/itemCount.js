@@ -45,7 +45,7 @@ export const ItemCount = ({ product, stock, initial }) => {
     return (
         <div className='item-count-component' >
             <div className='item-count-container'>
-                <div className='product'>{product}</div>
+                <div className='product'>{`Stock ${stock} unidades`}</div>
                 <div className='increment-decrement-stock'>
                     <div className={`increment-decrement-stock-sign  ${minusCounter ? 'left' : 'disable-sign-l'}`} onClick={decrement}><FaMinus /></div>
                     <div className='increment-decrement-stock-n'>{counter}</div>
