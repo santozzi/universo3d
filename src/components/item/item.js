@@ -1,23 +1,38 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './item.css';
+import loadingPicture from '../../images/loading-32.gif'
 
+export const Item = ({ id, pictureUrl, title, price, loading }) => {
 
-export const Item = ({ pictureUrl, title, price }) => {
-    const click = () => {
-        alert("click");
-    }
 
     return (
-        <div onClick={click} className='card-product-Mobile'>
+
+        <Link to={`/item/${id}`} className='card-product-Mobile'>
+
             <div className='card-product-Mobile-container-image'>
-                <img className='card-product-Mobile-image' src={pictureUrl} alt='imagen box' />
+                {loading
+                    ? <img className='card-product-Mobile-image' src={loadingPicture} alt='imagen box' />
+                    : <img className='card-product-Mobile-image' src={pictureUrl} alt='imagen box' />
+                }
             </div>
             <div className='card-product-detail-box'>
-                <div className='card-product-detail-box-tilte'>{title}</div>
-                <div className='card-product-detail-box-price'>${price}</div>
-                <div className='card-product-detail-box-icons'></div>
+                {loading
+                    ?
+                    (<>
+                        <p className='card-product-detail-box-tilte'><br /></p>
+                        <p className='card-product-detail-box-price'><br /></p>
+                    </>)
+                    :
+                    (<>
+                        <p className='card-product-detail-box-tilte'>{title}</p>
+                        <p className='card-product-detail-box-price'>${price}</p>
+                    </>)
+                }
+                <div className='card-product-detail-box-icons'>{ /*esto es por ejemplo para icono de favorito*/}</div>
             </div>
-        </div>
+
+        </Link>
+
     );
 }

@@ -2,37 +2,45 @@ import React, { useState, useEffect } from 'react';
 import './itemListContainer.css';
 import { ItemList } from '../itemList/itemList';
 import { Item } from '../item/item';
-import { getProducts } from '../../models/products.model';
-import loaderIcon from '../../images/Loading_icon.gif';
+import { getProductsByCategory, getProducts, getCategoryById } from '../../models/products.model';
+import { useNavigate, useParams } from 'react-router-dom';
+
 export const ItemListContainer = () => {
-
-
-    const preloadItem = [
-        { id: 1, title: "---------", price: "-----", pictureUrl: loaderIcon },
-        { id: 2, title: "---------", price: "-----", pictureUrl: loaderIcon },
-        { id: 3, title: "---------", price: "-----", pictureUrl: loaderIcon },
-        { id: 4, title: "---------", price: "-----", pictureUrl: loaderIcon },
-        { id: 5, title: "---------", price: "-----", pictureUrl: loaderIcon },
-        { id: 6, title: "---------", price: "-----", pictureUrl: loaderIcon },
-        { id: 7, title: "---------", price: "-----", pictureUrl: loaderIcon },
-        { id: 8, title: "---------", price: "-----", pictureUrl: loaderIcon },
-        { id: 9, title: "---------", price: "-----", pictureUrl: loaderIcon },
-        { id: 10, title: "---------", price: "-----", pictureUrl: loaderIcon },
-
-    ]
-
-    const [products, setProducts] = useState(preloadItem)
-
+    const arrayDefault = [{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }, { id: '5' }, { id: '6' }, { id: '7' }, { id: '8' }, { id: '9' }, { id: '10' }];
+    const [products, setProducts] = useState(arrayDefault);
+    const [loading, setLoading] = useState(false);
+    const { id } = useParams();
+    const [title, setTitle] = useState("Todas")
+    let navigate = useNavigate();
     useEffect(() => {
-        getProducts().then(prod => setProducts(prod));
+        setLoading(true);
+
+        if (id === "" || id === undefined) {
+            getProducts().then(prod => {
+                setProducts(prod);
+                setTitle("Todas las categorías");
+                setLoading(false);
+            }).catch((err) => navigate(`/error/${err}`));
+
+        } else {
+            getProductsByCategory(id).then(prod => setProducts(prod));
+
+            getCategoryById(id).then(category => {
+                setTitle(category.name)
+                setLoading(false);
+            }).catch((error) => navigate(`/error/${error}`))
+
+        }
+        return () => { setProducts(arrayDefault) }
 
 
-    }, [products])
+
+    }, [id])
 
     return (
-        <ItemList titulo="Mates">
+        <ItemList titulo={loading ? 'Cargando...' : title}>
             {products.map(producto => (
-                <Item key={producto.id} {...producto} />
+                <Item key={producto.id} loading={loading} {...producto} />
             ))}
         </ItemList>
     );

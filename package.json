@@ -5,11 +5,6 @@
   "author": "Sergio Antozzi",
   "license": "MIT",
   "dependencies": {
-    "@svgr/plugin-svgo": "^6.2.0",
-    "@svgr/webpack": "^6.2.1",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
-    "@testing-library/user-event": "^13.5.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.4.0",

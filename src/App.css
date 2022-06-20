@@ -3,7 +3,18 @@
   margin: 0;
 }
 html,body{
-  font-size: 62.5%;
-  background-color: #BCBFCC;
-}
 
+  background-color: #BCBFCC;
+  height: 100vh;
+  font-size: 62.5%;
+}
+.App{
+ 
+  background-color: white;
+}
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}

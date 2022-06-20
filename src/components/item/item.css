@@ -9,7 +9,10 @@
     width: 20rem;
     box-shadow: 0.30rem 0.30rem 0.30rem   #00000098;
     background-color: white;
+    text-decoration: none;
+    color:#000000;
   }
+  /*
   .card-product-Mobile:hover::after{
     position: absolute;
     top: 0;
@@ -23,10 +26,17 @@
     
      
     
+  }*/
+  .button{
+    width: 100%;
   }
   .card-product-Mobile-container-image{
-    background-color: white;
+    display: flex;
+    align-items: center;
+    background-color: #5A628120;
+
     width: 20rem;
+    height: 25rem;
     
     overflow: hidden;
   }
@@ -43,6 +53,7 @@
     background-color: white;
     gap: 0.75rem;
     margin-top: 1rem;
+    text-decoration: none;
    }
  
    .card-product-detail-box-tilte{
@@ -51,6 +62,9 @@
     font-weight: 200;
     font-family: Roboto;
     padding: 0 2rem 0 2rem;
+    text-decoration: none;
+    text-decoration-line: none;
+    
    }
  
    .card-product-detail-box-price{
@@ -68,7 +82,7 @@
     .card-product-Mobile{
       display: flex;
       align-items: center;
-      justify-content: start;
+      justify-content: flex-start;
       flex-direction: row;
       flex-wrap: nowrap;
       position:relative;
@@ -93,12 +107,13 @@
     .card-product-Mobile-container-image{
       background-color: white;
       width: 20rem;
-      
+      height: 15rem;
+      background-color: #5A628120;
       overflow: hidden;
     }
   
     .card-product-Mobile-image{
-      padding: 1rem;
+      
       width: 100%;
  
     }

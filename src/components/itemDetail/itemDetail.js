@@ -3,8 +3,6 @@ import { ItemCount } from '../itemCount/itemCount'
 import './itemDetail.css'
 import cargando from '../../images/loading-32.gif'
 export const ItemDetail = ({ item, loading }) => {
-    console.log(item);
-
     return (
         <section className='item-detail-section'>
             <div className='item-detail-image-description'>

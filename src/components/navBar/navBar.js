@@ -3,7 +3,7 @@ import './navBar.css';
 import { FaBars } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
 import { CartWidjet } from './cartWidjet/cartWidjet';
-
+import { NavLink, Link } from 'react-router-dom';
 
 
 export const NavBar = () => {
@@ -17,14 +17,17 @@ export const NavBar = () => {
     return (
 
         <div className={`navbar-container-default ${state ? 'navbar-container' : 'responsive-navbar-container'}`} >
-            <div className={`navbar-logo-text${!state ? ' responsive-navbar-logo-text' : ''}`}>
+
+            <Link to="/" className={`navbar-logo-text${!state ? ' responsive-navbar-logo-text' : ''}`}>
                 <div>universo 3d</div>
-            </div>
+            </Link>
             <nav className={`navbar-default${!state ? ' responsive-navbar' : ''}`}>
-                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Mates</a>
-                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Llaveros</a>
-                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Insumos</a>
-                <a className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} href='/#'>Cortadores</a>
+
+                <NavLink to="/" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => ({ color: isActive ? 'red' : '#eee' })}>Home</NavLink>
+                <NavLink to="/category/1" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => ({ color: isActive ? 'red' : '#eee' })}>Mates</NavLink>
+                <NavLink to="/category/3" style={({ isActive }) => ({ color: isActive ? 'red' : '#eee' })} className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} >Llaveros</NavLink>
+                <NavLink to="/category/2" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => ({ color: isActive ? 'red' : '#eee' })}>Porta sahumerios</NavLink>
+                <NavLink to="/category/4" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => ({ color: isActive ? 'red' : '#eee' })}>Cortadores</NavLink>
                 <CartWidjet />
             </nav>
             {

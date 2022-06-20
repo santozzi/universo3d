@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5rem;
+    padding: 2rem;
     margin: 5rem;
     background-color: #29335C;
     width: 90rem;
@@ -68,7 +68,7 @@
     
 }
 .item-detail-information{
-    height: 30rem;
+    height: 10rem;
     
     
 }

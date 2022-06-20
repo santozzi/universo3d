@@ -27,7 +27,7 @@ export const ItemCount = ({ product, stock, initial }) => {
         } else {
             setMinusCounter(false);
         }
-        console.log("verifico los signos");
+
     }, [counter, stock]);
 
     const increment = () => {

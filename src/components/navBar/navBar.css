@@ -64,6 +64,7 @@ color: var(--textColor);
   .navbar-link-default:hover{
   color:var(--secondaryColor)
   }
+
   .navbar-logo-text{
     display: flex;
     flex-direction: column;
@@ -77,6 +78,7 @@ color: var(--textColor);
     padding-left: 2rem;
     user-select: none;
     text-align: center;
+    text-decoration: none;
     }
 
 
