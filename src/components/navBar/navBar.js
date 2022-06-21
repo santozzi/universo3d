@@ -13,7 +13,20 @@ export const NavBar = () => {
         state ? setstate(false) : setstate(true);
 
     }
+    const active = {
+        color: 'red',
+    }
 
+    const disactive = {
+        default: {
+            color: "#eee"
+        },
+        Hovered: {
+            color: 'red'
+        }
+
+
+    }
     return (
 
         <div className={`navbar-container-default ${state ? 'navbar-container' : 'responsive-navbar-container'}`} >
@@ -23,11 +36,11 @@ export const NavBar = () => {
             </Link>
             <nav className={`navbar-default${!state ? ' responsive-navbar' : ''}`}>
 
-                <NavLink to="/" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => ({ color: isActive ? 'red' : '#eee' })}>Home</NavLink>
-                <NavLink to="/category/1" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => ({ color: isActive ? 'red' : '#eee' })}>Mates</NavLink>
-                <NavLink to="/category/3" style={({ isActive }) => ({ color: isActive ? 'red' : '#eee' })} className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} >Llaveros</NavLink>
-                <NavLink to="/category/2" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => ({ color: isActive ? 'red' : '#eee' })}>Porta sahumerios</NavLink>
-                <NavLink to="/category/4" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => ({ color: isActive ? 'red' : '#eee' })}>Cortadores</NavLink>
+                <NavLink to="/" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => (isActive ? active : disactive)}>Home</NavLink>
+                <NavLink to="/category/1" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => (isActive ? active : disactive)}>Mates</NavLink>
+                <NavLink to="/category/3" style={({ isActive }) => (isActive ? active : disactive)} className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} >Llaveros</NavLink>
+                <NavLink to="/category/2" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => (isActive ? active : disactive)}>Porta sahumerios</NavLink>
+                <NavLink to="/category/4" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => (isActive ? active : disactive)}>Cortadores</NavLink>
                 <CartWidjet />
             </nav>
             {
