@@ -23,7 +23,7 @@ export const ItemDetailContainer = () => {
 
     }, [id, navigate])
 
-
+    //Enviar un componente desde a ItemDeatil desde aca?
 
     return (
         <ItemDetail item={product} loading={loading} />

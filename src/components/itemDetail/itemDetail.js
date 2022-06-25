@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ItemCount } from '../itemCount/itemCount'
 import './itemDetail.css'
 import cargando from '../../images/loading-32.gif'
+import { FaShoppingCart } from 'react-icons/fa';
 export const ItemDetail = ({ item, loading }) => {
+    const [bought, setBought] = useState(false);
+
+
+    const onAdd = () => {
+        setBought(true)
+
+    }
+    const navigate = useNavigate();
+
+
+
+
     return (
         <section className='item-detail-section'>
             <div className='item-detail-image-description'>
@@ -38,7 +52,12 @@ export const ItemDetail = ({ item, loading }) => {
                             <div className='item-detail-price'>{`$ ${item.price}`}</div>
 
                         </div>
-                        <ItemCount stock={item.stock} initial='1' />
+                        {bought ?
+                            <button className='item-detal-button-terminar-compra' onClick={() => navigate('/cart')} >
+                                Terminar mi compra <FaShoppingCart /></button>
+                            :
+                            <ItemCount stock={item.stock} onAdd={onAdd} initial='1' />
+                        }
                     </>
                 }
             </div>
