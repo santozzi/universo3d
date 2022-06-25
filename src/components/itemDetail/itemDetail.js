@@ -8,7 +8,7 @@ export const ItemDetail = ({ item, loading }) => {
     const [bought, setBought] = useState(false);
 
 
-    const onAdd = () => {
+    const onAdd = (counter) => {
         setBought(true)
 
     }

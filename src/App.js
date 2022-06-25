@@ -5,24 +5,25 @@ import { ItemDetailContainer } from './components/itemDetailContainer/itemDetail
 import { ItemListContainer } from './components/itemListContainer/itemListContainer';
 import { ErrorPage } from './components/errorPage/errorPage';
 import { Cart } from './components/cart/cart';
+import { CartContextProvider } from './components/cartContext/cartContext';
 
 function App() {
   return (
-
-    <BrowserRouter >
-      <Header />
-      <main>
-        <Routes>
-          <Route path='/' element={<ItemListContainer />} />
-          <Route path='/category/:id' element={<ItemListContainer />} />
-          <Route path='/item/:id' element={<ItemDetailContainer />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/error/:mensaje' element={<ErrorPage />} />
-          <Route path='*' element={<ErrorPage />} />
-        </Routes>
-      </main>
-    </BrowserRouter>
-
+    <CartContextProvider >
+      <BrowserRouter >
+        <Header />
+        <main>
+          <Routes>
+            <Route path='/' element={<ItemListContainer />} />
+            <Route path='/category/:id' element={<ItemListContainer />} />
+            <Route path='/item/:id' element={<ItemDetailContainer />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/error/:mensaje' element={<ErrorPage />} />
+            <Route path='*' element={<ErrorPage />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
+    </CartContextProvider>
   );
 }
 
