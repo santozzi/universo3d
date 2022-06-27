@@ -5,7 +5,7 @@ import { CartContext } from '../../cartContext/cartContext';
 import './cartWidjet.css';
 export const CartWidjet = () => {
     const { cartSize } = useContext(CartContext);
-    const [activo, setActivo] = useState(false);
+
     const active = {
         color: 'red',
     }
@@ -20,10 +20,7 @@ export const CartWidjet = () => {
 
 
     }
-    useEffect(() => {
-        console.log(activo);
 
-    }, [activo])
 
     return (
 
