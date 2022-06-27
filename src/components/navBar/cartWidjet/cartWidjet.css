@@ -1,4 +1,5 @@
 .cart-widjet-btn{
+    position: relative;
     cursor:pointer;
     background: transparent;
     border: none;
@@ -14,6 +15,14 @@
     color: var(--secondaryColor);
 
    
+  }
+  .cart-widjet-count{
+     position: absolute;
+     
+     left:1rem;
+     top: -0.9rem;
+     color:#eee;
+     font-size: 1.2rem;
   }
   .button{
     color: #29335C;
