@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ItemCount } from '../itemCount/itemCount'
 import './itemDetail.css'
 import cargando from '../../images/loading-32.gif'
 import { FaShoppingCart } from 'react-icons/fa';
+import { CartContext } from '../cartContext/cartContext'
+
 export const ItemDetail = ({ item, loading }) => {
     const [bought, setBought] = useState(false);
-
+    const { addItem } = useContext(CartContext);
 
     const onAdd = (counter) => {
         setBought(true)
+        addItem(item, counter);
 
     }
     const navigate = useNavigate();
