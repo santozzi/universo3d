@@ -15,7 +15,7 @@ export const ItemDetail = ({ item, loading }) => {
     const onAdd = (counter) => {
         setBought(true)
         addItem(item, counter);
-        setStock(stock - counter);
+        setStock((prevStock) => prevStock - counter);
     }
     const navigate = useNavigate();
     useEffect(() => {
@@ -67,7 +67,7 @@ export const ItemDetail = ({ item, loading }) => {
                             <button className='item-detal-button-terminar-compra' onClick={() => navigate('/cart')} >
                                 Terminar mi compra <FaShoppingCart /></button>
                             : stock === 0 ?
-                                <p>Producto agotado</p>
+                                <p className='item-detail-producto-agotado'>Producto agotado</p>
                                 :
                                 <ItemCount stock={stock} onAdd={onAdd} initial='1' />
                         }
