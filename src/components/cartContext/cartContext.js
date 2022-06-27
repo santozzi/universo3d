@@ -15,6 +15,7 @@ export const CartContextProvider = ({ children }) => {
             setItemsInCart([{ item, quantity }]);
         } else {
             if (isInCart(item.id)) {
+                //si ya esta el item en la lista
                 const itemInCartCopy = [...itemInCart];
                 const itemCart = itemInCartCopy.find((itemCart) => item.id === itemCart.item.id);
                 itemCart.quantity += quantity;
@@ -31,6 +32,13 @@ export const CartContextProvider = ({ children }) => {
      */
     const cartSize = () => {
         return itemInCart.length;
+    }
+    const itemSize = (id) => {
+        let cant = 0;
+        if (isInCart(id)) {
+            cant = itemInCart.find(itemCart => itemCart.item.id === id).quantity;
+        }
+        return cant;
     }
     /**
      * removeItem: elimina un item segun su id
@@ -62,15 +70,17 @@ export const CartContextProvider = ({ children }) => {
     }
     /**
      * 
-     * @returns debuelve todos los elementos de la lista de items
+     * @returns devuelve todos los elementos de la lista de items
      */
-    function findAllItems() {
+    const findAllItems = () => {
         return itemInCart;
     }
+    //TODO disminuir cantidad de un item ej, mate bender 5, (click) mate bender 4
+
     return (
         <CartContext.Provider value={{
             /* funciones a compratir*/
-            addItem, removeItem, clear, findAllItems, itemInCart, cartSize
+            addItem, removeItem, clear, findAllItems, itemInCart, cartSize, itemSize
         }}>
             {children}
         </CartContext.Provider>

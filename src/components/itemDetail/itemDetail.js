@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ItemCount } from '../itemCount/itemCount'
 import './itemDetail.css'
@@ -8,15 +8,23 @@ import { CartContext } from '../cartContext/cartContext'
 
 export const ItemDetail = ({ item, loading }) => {
     const [bought, setBought] = useState(false);
-    const { addItem } = useContext(CartContext);
+    const { addItem, itemSize } = useContext(CartContext);
+
+    const [stock, setStock] = useState(0)
 
     const onAdd = (counter) => {
         setBought(true)
         addItem(item, counter);
-
+        setStock(stock - counter);
     }
     const navigate = useNavigate();
+    useEffect(() => {
+        if (!loading) {
+            setStock(item.stock - itemSize(item.id));
+            console.log(stock);
+        }
 
+    }, [stock, loading]);
 
 
 
@@ -58,8 +66,10 @@ export const ItemDetail = ({ item, loading }) => {
                         {bought ?
                             <button className='item-detal-button-terminar-compra' onClick={() => navigate('/cart')} >
                                 Terminar mi compra <FaShoppingCart /></button>
-                            :
-                            <ItemCount stock={item.stock} onAdd={onAdd} initial='1' />
+                            : stock === 0 ?
+                                <p>Producto agotado</p>
+                                :
+                                <ItemCount stock={stock} onAdd={onAdd} initial='1' />
                         }
                     </>
                 }
