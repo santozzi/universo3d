@@ -4,25 +4,26 @@ export const CartContext = createContext();
 export const CartContextProvider = ({ children }) => {
     //itemInCart es un arreglo de {Item, cantidad}
 
-    const [itemInCart, setItemsInCart] = useState([]);
+    const [itemsInCart, setItemsInCart] = useState([]);
     /**
      * addItem: agrega cierta cantidad de items al carro de compras
      * @param {*} item 
      * @param {*} quantity 
      */
+    //TODO meter return en vez de else para aplanar al arbol
     const addItem = (item, quantity) => {
-        if (itemInCart.length === 0) {
+        if (itemsInCart.length === 0) {
             setItemsInCart([{ item, quantity }]);
         } else {
             if (isInCart(item.id)) {
                 //si ya esta el item en la lista
-                const itemInCartCopy = [...itemInCart];
+                const itemInCartCopy = [...itemsInCart];
                 const itemCart = itemInCartCopy.find((itemCart) => item.id === itemCart.item.id);
                 itemCart.quantity += quantity;
                 setItemsInCart([...itemInCartCopy]);
             } else {
-                setItemsInCart([...itemInCart, { item, quantity }]);
-                console.log(`Agrego si no existe el item ${itemInCart}`);
+                setItemsInCart([...itemsInCart, { item, quantity }]);
+
             }
         }
     }
@@ -31,12 +32,12 @@ export const CartContextProvider = ({ children }) => {
      * @returns devuelve el tamaño de la lista de productos
      */
     const cartSize = () => {
-        return itemInCart.length;
+        return itemsInCart.length;
     }
     const itemSize = (id) => {
         let cant = 0;
         if (isInCart(id)) {
-            cant = itemInCart.find(itemCart => itemCart.item.id === id).quantity;
+            cant = itemsInCart.find(itemCart => itemCart.item.id === id).quantity;
         }
         return cant;
     }
@@ -46,7 +47,7 @@ export const CartContextProvider = ({ children }) => {
      */
     const removeItem = (itemId) => {
         if (isInCart(itemId)) {
-            let itemInCartCopy = [...itemInCart];
+            let itemInCartCopy = [...itemsInCart];
             let itemCart = itemInCartCopy.find((itemCart) => (
                 itemCart.item.id === itemId
             ))
@@ -66,21 +67,56 @@ export const CartContextProvider = ({ children }) => {
      * @returns ture, si el item está en el carrito y false de lo contrario
      */
     const isInCart = (id) => {
-        return itemInCart.some((itemCant) => itemCant.item.id === id)
+        return itemsInCart.some((itemCant) => itemCant.item.id === id)
     }
     /**
      * 
      * @returns devuelve todos los elementos de la lista de items
      */
     const findAllItems = () => {
-        return itemInCart;
+        return itemsInCart;
     }
     //TODO disminuir cantidad de un item ej, mate bender 5, (click) mate bender 4
 
+    const decrement = (id) => {
+        const itemsInCartCopy = [...itemsInCart];
+        if (isInCart(id)) {
+            const itemCant = itemsInCartCopy.find(itemCant => itemCant.item.id === id);
+            itemCant.quantity -= 1;
+            setItemsInCart(itemsInCartCopy);
+        }
+    }
+    const increment = (id) => {
+        const itemsInCartCopy = [...itemsInCart];
+        if (isInCart(id)) {
+            const itemCant = itemsInCartCopy.find(itemCant => itemCant.item.id === id);
+            itemCant.quantity += 1;
+            setItemsInCart(itemsInCartCopy);
+
+        }
+    }
+    const totalPlus = () => {
+        let plus = 0;
+        itemsInCart.forEach(itemCant => {
+            plus += itemCant.quantity;
+        });
+        return plus;
+    }
+    const totalPlusPrice = () => {
+        let plus = 0;
+        itemsInCart.forEach(itemCant => {
+            plus += itemCant.quantity * itemCant.item.price;
+        });
+        return plus;
+    }
+    const updateQuantity = (id) => {
+        //TODO actualiza la cantidad de un producto
+
+    }
     return (
         <CartContext.Provider value={{
             /* funciones a compratir*/
-            addItem, removeItem, clear, findAllItems, itemInCart, cartSize, itemSize
+            addItem, removeItem, clear, findAllItems, cartSize, itemSize, totalPlus, totalPlusPrice, increment, decrement
         }}>
             {children}
         </CartContext.Provider>

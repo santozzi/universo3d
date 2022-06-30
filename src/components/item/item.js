@@ -5,7 +5,7 @@ import loadingPicture from '../../images/loading-32.gif'
 
 export const Item = ({ id, pictureUrl, title, price, loading }) => {
 
-
+    // TODO en item.css revisar el tamaño del boton
     return (
 
         <Link to={`/item/${id}`} className='card-product-Mobile'>

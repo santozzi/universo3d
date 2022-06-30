@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './navBar.css';
 import { FaBars } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
 import { CartWidjet } from './cartWidjet/cartWidjet';
 import { NavLink, Link } from 'react-router-dom';
+import { CartContext } from '../cartContext/cartContext';
+
+
 
 
 export const NavBar = () => {
     const [state, setstate] = useState(true);
-
+    const { totalPlus } = useContext(CartContext);
     const showNavBar = () => {
         state ? setstate(false) : setstate(true);
 
@@ -27,22 +30,23 @@ export const NavBar = () => {
 
 
     }
+
     return (
 
-        <div className={`navbar-container-default ${state ? 'navbar-container' : 'responsive-navbar-container'}`} >
-
+        <nav className={`navbar-container-default ${state ? 'navbar-container' : 'responsive-navbar-container'}`}>
             <Link to="/" className={`navbar-logo-text${!state ? ' responsive-navbar-logo-text' : ''}`}>
                 <div>universo 3d</div>
             </Link>
-            <nav className={`navbar-default${!state ? ' responsive-navbar' : ''}`}>
+            <div className={`navbar-default${!state ? ' responsive-navbar' : ''}`}>
 
                 <NavLink to="/" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => (isActive ? active : disactive)}>Home</NavLink>
                 <NavLink to="/category/1" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => (isActive ? active : disactive)}>Mates</NavLink>
                 <NavLink to="/category/3" style={({ isActive }) => (isActive ? active : disactive)} className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} >Llaveros</NavLink>
                 <NavLink to="/category/2" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => (isActive ? active : disactive)}>Porta sahumerios</NavLink>
                 <NavLink to="/category/4" className={`navbar-link-default ${state ? 'navbar-link' : 'responsive-navbar-link'}`} style={({ isActive }) => (isActive ? active : disactive)}>Cortadores</NavLink>
-                <CartWidjet />
-            </nav>
+                {totalPlus() > 0 &&
+                    <CartWidjet />}
+            </div>
             {
                 (state) ?
                     <button
@@ -60,6 +64,6 @@ export const NavBar = () => {
                     </button>
             }
 
-        </div>
+        </nav >
     );
 }

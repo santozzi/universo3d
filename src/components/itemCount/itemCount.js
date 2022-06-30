@@ -4,7 +4,7 @@ import { FaMinus, FaPlus } from 'react-icons/fa';
 
 
 
-export const ItemCount = ({ product, stock, initial, onAdd }) => {
+export const ItemCount = ({ stock, initial, onAdd }) => {
 
     const [counter, setCounter] = useState(Number(initial));
     const [plusCounter, setPlusCounter] = useState(false);
@@ -42,7 +42,7 @@ export const ItemCount = ({ product, stock, initial, onAdd }) => {
     return (
         <div className='item-count-component' >
             <div className='item-count-container'>
-                <div className='product'>{`Stock ${stock} unidades`}</div>
+                <div className='product'>{`disponibles: ${stock} unidades`}</div>
                 <div className='increment-decrement-stock'>
                     <div className={`increment-decrement-stock-sign  ${minusCounter ? 'left' : 'disable-sign-l'}`} onClick={decrement}><FaMinus /></div>
                     <div className='increment-decrement-stock-n'>{counter}</div>

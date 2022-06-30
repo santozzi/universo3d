@@ -1,0 +1,69 @@
+.cart-total-price{
+    font-size: 3rem;
+    margin: 2rem;
+    
+ }
+ .cart-total{
+    font-size: 2rem;
+    font-size: 3rem;
+    margin: 1rem;
+    text-align: right;
+ }
+ /*Boton agregar a carrito*/
+.cart-link-to-home{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 30rem;
+   height: 3rem;
+   font-size: 1.2rem;
+   font-weight: 600;
+   font-family: Rototo, sans-serif;
+   border: 0.01rem solid var(--maincolor);
+   background-color: #eee;
+   box-shadow: 0.1rem 0.1rem 0.1rem #00000060;
+   user-select: none;
+   text-decoration: none;
+  
+}
+.cart-link-to-home:hover{
+   background-color: var(--secondaryColor);
+   color: var(--textColor);
+   cursor: pointer;   
+   color: var(--primary) 
+}
+.cart-cero-items{
+   font-size: 4rem;
+   font-weight: bold;
+   font-style: italic;
+   color: var(--textColor);
+   
+}
+.cart-image-container{
+  position: relative;
+  background-image: url('../../images/CarroVacio.jpg');
+  background-size: cover;
+  width: 100%;
+  height: 20rem;
+}
+.cart-text-container{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position:absolute;
+   left: 0;
+   top:0;
+   
+   height: 100%;
+   width: 100%;
+  
+}
+
+
+.cart-cerolink-container{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   height: 90vh;
+}

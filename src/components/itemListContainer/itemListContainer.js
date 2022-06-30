@@ -12,6 +12,7 @@ export const ItemListContainer = () => {
     const { id } = useParams();
     const [title, setTitle] = useState("Todas")
     let navigate = useNavigate();
+
     useEffect(() => {
         setLoading(true);
 
@@ -19,16 +20,19 @@ export const ItemListContainer = () => {
             getProducts().then(prod => {
                 setProducts(prod);
                 setTitle("Todas las categorías");
-                setLoading(false);
-            }).catch((err) => navigate(`/error/${err}`));
+
+            }).catch((err) => navigate(`/error/${err}`))
+                .finally(() => { setLoading(false) })
+
 
         } else {
             getProductsByCategory(id).then(prod => setProducts(prod));
 
             getCategoryById(id).then(category => {
                 setTitle(category.name)
-                setLoading(false);
+
             }).catch((error) => navigate(`/error/${error}`))
+                .finally(() => { setLoading(false) })
 
         }
         return () => { setProducts(arrayDefault) }

@@ -21,7 +21,7 @@ export const ItemDetail = ({ item, loading }) => {
     useEffect(() => {
         if (!loading) {
             setStock(item.stock - itemSize(item.id));
-            console.log(stock);
+
         }
 
     }, [stock, loading]);
