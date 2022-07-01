@@ -109,10 +109,6 @@ export const CartContextProvider = ({ children }) => {
         });
         return plus;
     }
-    const updateQuantity = (id) => {
-        //TODO actualiza la cantidad de un producto
-
-    }
     return (
         <CartContext.Provider value={{
             /* funciones a compratir*/

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './itemListContainer.css';
 import { ItemList } from '../itemList/itemList';
 import { Item } from '../item/item';
-import { getProductsByCategory, getProducts, getCategoryById } from '../../models/products.model';
+import { getProductsByCategory, getProducts, getCategoryById } from '../../services/product.services';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const ItemListContainer = () => {

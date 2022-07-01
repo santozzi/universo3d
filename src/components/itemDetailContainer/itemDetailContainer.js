@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { getProductById } from '../../models/products.model';
+import { getProductById } from '../../services/product.services';
 import { ItemDetail } from '../itemDetail/itemDetail';
 export const ItemDetailContainer = () => {
     const [product, setProduct] = useState({});
@@ -13,9 +13,11 @@ export const ItemDetailContainer = () => {
         getProductById(id)
             .then(prod => {
                 setProduct(prod)
-                setLoading(false)
+
+                console.log(prod);
             })
             .catch(err => navigate(`/error/${err}`))
+            .finally(() => setLoading(false));
 
 
 
