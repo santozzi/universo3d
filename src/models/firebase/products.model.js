@@ -1,10 +1,16 @@
 import { firebaseApp } from './conexion';
-import { doc, getDoc, getFirestore, collection, getDocs, query, where } from 'firebase/firestore';
+import { doc, getDoc, getFirestore, collection, getDocs, query, where, addDoc } from 'firebase/firestore';
 const TABLE = "products";
 const app = firebaseApp;
 
 
+export const saveProduct = (product) => {
+    const db = getFirestore(app);
 
+    addDoc(collection(db, TABLE), product)
+        .then(dato => console.log(dato))
+        .catch(err => console.log(err));
+}
 
 export const getProducts = () => {
 
