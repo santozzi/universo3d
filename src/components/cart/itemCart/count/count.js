@@ -3,8 +3,12 @@ import { FaMinus, FaPlus } from 'react-icons/fa';
 import { CartContext } from '../../../cartContext/cartContext';
 import './count.css';
 export const Count = ({ itemCant }) => {
+
+
     const { item, quantity } = itemCant;
-    const { removeItem, clear, findAllItems, cartSize, totalPlus, increment, decrement, itemSize } = useContext(CartContext);
+
+
+    const { increment, decrement, itemSize } = useContext(CartContext);
 
     const [counter, setCounter] = useState(quantity);
     const [plusCounter, setPlusCounter] = useState(false);
@@ -33,9 +37,18 @@ export const Count = ({ itemCant }) => {
     return (
         <>
             <div className='increment-decrement-stock'>
-                <button className={`increment-decrement-stock-sign  ${minusCounter ? 'left' : 'disable-sign-l'}`} onClick={() => decrement(item.id)} disabled={!minusCounter}><FaMinus /></button>
+                <button className={`increment-decrement-stock-sign  ${minusCounter ? 'left' : 'disable-sign-l'}`}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        decrement(item.id);
+
+                    }} disabled={!minusCounter}><FaMinus /></button>
                 <div className='increment-decrement-stock-n'>{itemSize(item.id)}</div>
-                <button className={`increment-decrement-stock-sign  ${plusCounter ? 'right' : 'disable-sign-r'}`} onClick={() => increment(item.id)} disabled={!plusCounter}><FaPlus /></button>
+                <button className={`increment-decrement-stock-sign  ${plusCounter ? 'right' : 'disable-sign-r'}`}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        increment(item.id)
+                    }} disabled={!plusCounter}><FaPlus /></button>
             </div>
             <p className='increment-decrement-disponible'>{`Disponibles: ${stockDisponible} unidades`}</p>
         </>

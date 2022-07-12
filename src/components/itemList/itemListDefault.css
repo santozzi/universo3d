@@ -5,7 +5,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     background-color: white;
-    
+    width: 100%;
     box-shadow: 0.5rem 0.5rem 0.51rem #00000020;
     margin: 2rem;
     background-color: #00000005;

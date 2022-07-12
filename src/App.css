@@ -2,15 +2,17 @@
   padding: 0;
   margin: 0;
 }
-html,body{
 
-  background-color: #BCBFCC;
+body{
+
+
   height: 100vh;
-  font-size: 62.5%;
+
 }
+
 .App{
- 
-  background-color: white;
+  background-color: #00000050;
+
 }
 main{
   display: flex;

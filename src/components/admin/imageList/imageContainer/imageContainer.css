@@ -1,0 +1,37 @@
+.imageContainer-relative-image-container{
+    position: relative;
+    margin: 0.25rem;
+   
+}
+.imageContainer-relative-image-container:hover{
+  
+  margin-top: 0;
+ 
+
+}
+.imageContainer-relative-image{
+     width: 10rem;
+     height: 15rem;
+}
+.imageContainer-absolute-button{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.5rem;
+    padding:0.2rem 0.7rem 0.2rem 0.7rem;
+    background-color: var(--secondaryColor);
+    color: var(--textColor);
+    box-shadow: none;
+    border: 0;
+}
+.imageContainer-image-button{
+    box-shadow: none;
+    border: 0;
+}
+
+.imageContainer-absolute-button:hover{
+    background-color: var(--textColor);
+    color: var(--secondaryColor);
+}

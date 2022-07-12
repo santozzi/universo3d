@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React, { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../../cartContext/cartContext';
 import { Count } from './count/count';
@@ -15,7 +16,14 @@ export const ItemCart = ({ itemCant }) => {
             </div>
             <div className='itemcart-tituloboton' >
                 <div className='itemcart-tituloboton-titulo'>{item.title}</div>
-                <button className='button' onClick={() => removeItem(item.id)}>Eliminar item</button>
+                <Button sx={{
+                    backgroundColor: '#aa0509',
+                    color: 'white',
+                    margin: '1rem',
+                    '&:hover': {
+                        backgroundColor: '#000',
+                    }
+                }} onClick={() => removeItem(item.id)}>Eliminar item</Button>
             </div>
 
             <div className='itemcart-count'>

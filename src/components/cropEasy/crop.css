@@ -1,0 +1,9 @@
+.range{
+    position: absolute;
+    z-index: 2;
+}
+.container-cropper{
+    position: relative;
+    width: 500px;
+    height: 500px;
+}

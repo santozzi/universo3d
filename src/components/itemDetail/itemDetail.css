@@ -3,11 +3,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-    margin: 5rem;
+    padding: 1rem;
+    margin: 2rem;
     background-color: #29335C;
-    width: 90rem;
-    height: 70rem;
+    width: 70rem;
+    height: 50rem;
     box-shadow: 0.1rem 0.1rem 0.1rem  #00000020;
     border-radius: 2rem;
     border: 0.01rem solid #eeeeee;
@@ -34,7 +34,7 @@
     font-weight: 100;
     font-family: work-sans, Roboto, sans-serif;
     text-align: justify;
-    width: 50rem;
+    width: 40rem;
     margin: 2rem;
     padding: 2rem;
     color:#D9D9D9;
@@ -55,7 +55,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: column;
-    width: 30rem;
+    width: 20rem;
     background-color: #eeeeee40;
     height: 100%;
     gap:1.2rem;

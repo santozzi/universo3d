@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './itemCount.css';
+//import './itemCount.css';
 import { FaMinus, FaPlus } from 'react-icons/fa';
+import { Box, Button, Typography } from '@mui/material';
 
 
 
@@ -42,16 +43,29 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
     return (
         <div className='item-count-component' >
             <div className='item-count-container'>
-                <div className='product'>{`disponibles: ${stock} unidades`}</div>
+                <Typography variant="h6" component="p" sx={{
+                    color: 'white',
+                    textAlign: 'center'
+                }}>{`${stock} unidades`}</Typography>
                 <div className='increment-decrement-stock'>
                     <div className={`increment-decrement-stock-sign  ${minusCounter ? 'left' : 'disable-sign-l'}`} onClick={decrement}><FaMinus /></div>
-                    <div className='increment-decrement-stock-n'>{counter}</div>
+                    <Box sx={{ fontSize: '1.5rem' }}>{counter}</Box>
                     <div className={`increment-decrement-stock-sign  ${plusCounter ? 'right' : 'disable-sign-r'}`} onClick={increment}><FaPlus /></div>
                 </div>
             </div>
-            <div className='button' onClick={() => {
-                onAdd(counter);
-            }}>Agregar a carrito</div>
+
+            <Button
+                onClick={() => { onAdd(counter) }}
+                sx={{
+                    backgroundColor: '#0062D8',
+                    color: 'white',
+                    width: '100%',
+                    '&:hover': {
+                        backgroundColor: '#000',
+                    }
+                }}
+            >Agregar a carrito</Button>
+
         </div>
     )
 }

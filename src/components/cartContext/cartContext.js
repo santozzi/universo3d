@@ -1,10 +1,19 @@
 import React, { createContext, useState } from 'react'
+import { saveOrderService } from '../../services/orders.service';
+import Swal from 'sweetalert2';
+import { Navigate } from 'react-router-dom';
+import { Modal, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
     //itemInCart es un arreglo de {Item, cantidad}
 
     const [itemsInCart, setItemsInCart] = useState([]);
+    const [verOrden, setVerOrden] = useState(true);
+    const verOrdenClose = () => {
+        setVerOrden(prev => !prev);
+    }
     /**
      * addItem: agrega cierta cantidad de items al carro de compras
      * @param {*} item 
@@ -109,10 +118,35 @@ export const CartContextProvider = ({ children }) => {
         });
         return plus;
     }
+
+    const orderGenerator = (user) => {
+
+        const itemOrder = itemsInCart.map(itemCant => {
+            return {
+                id: itemCant.item.id,
+                title: itemCant.item.title,
+                price: itemCant.item.price,
+                quantity: itemCant.quantity
+            }
+
+        });
+
+        const orden = {
+            buyer: {
+                name: user.name,
+                phone: user.phoneNumber,
+                email: user.email
+            },
+            items: itemOrder,
+            date: new Date(),
+            total: totalPlusPrice()
+        }
+        return saveOrderService(orden);
+    }
     return (
         <CartContext.Provider value={{
             /* funciones a compratir*/
-            addItem, removeItem, clear, findAllItems, cartSize, itemSize, totalPlus, totalPlusPrice, increment, decrement
+            orderGenerator, addItem, removeItem, clear, findAllItems, cartSize, itemSize, totalPlus, totalPlusPrice, increment, decrement
         }}>
             {children}
         </CartContext.Provider>

@@ -1,7 +1,12 @@
 import { firebaseApp } from './conexion';
-import { doc, getDoc, getFirestore, collection, getDocs, query, where, addDoc } from 'firebase/firestore';
+import {
+    doc, getDoc, getFirestore, collection,
+    getDocs, query, where, addDoc, deleteDoc, setDoc, updateDoc
+} from 'firebase/firestore';
 const TABLE = "products";
 const app = firebaseApp;
+
+const db = getFirestore(app);
 
 
 export const saveProduct = (product) => {
@@ -14,7 +19,7 @@ export const saveProduct = (product) => {
 
 export const getProducts = () => {
 
-    const db = getFirestore(app);
+    // const db = getFirestore(app);
     const itemsCollection = collection(db, TABLE);
     const promesa = new Promise((resolve, reject) => {
         getDocs(itemsCollection)
@@ -30,7 +35,7 @@ export const getProducts = () => {
     return promesa;
 }
 export const getProductById = (id) => {
-    const db = getFirestore(app);
+    // const db = getFirestore(app);
     const biciRef = doc(db, TABLE, id);
     const promesa = new Promise((resolve, reject) => {
 
@@ -44,7 +49,7 @@ export const getProductById = (id) => {
 }
 
 export const getProductsByCategory = (category) => {
-    const db = getFirestore(app);
+    //  const db = getFirestore(app);
     const q = query(collection(db, TABLE), where("category", "==", category));
     const promesa = new Promise((resolve, reject) => {
         getDocs(q).then((snapshot) => {
@@ -57,6 +62,22 @@ export const getProductsByCategory = (category) => {
     })
     return promesa;
 }
+
+export const removeProductByIdModel = (id) => {
+    const productRef = doc(db, TABLE, id);
+    return deleteDoc(productRef);
+}
+
+export const updateProductModel = (product) => {
+    const productRef = doc(db, TABLE, product.uid);
+    return setDoc(productRef, product);
+}
 export const getCategoryById = (id) => {
 
+}
+export const updateProductFieldModel = (id, fields) => {
+    const productRef = doc(db, TABLE, id);
+    return new Promise((resolve, reject) => {
+        updateDoc(productRef, fields).then(res => resolve(res)).catch(err => reject(err))
+    });
 }

@@ -1,0 +1,44 @@
+.imagelist-button-plus-container{
+  display:flex;
+  align-items: flex-start;
+  justify-self: center;
+  flex-wrap: wrap;
+  background-color: #ffffff90;
+  
+}
+
+.imagelist-button-plus{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    height: 15rem;
+    box-shadow: none;
+    border: 0;
+    margin: 0.25rem;
+    background-color: greenyellow;
+    color: greenyellow;
+    
+
+ 
+}
+.imagelist-button-plus:hover{
+    background-color: green;
+    color: greenyellow;
+}
+.imagelist-button-plus-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background-color: green;
+    width: 3rem;
+    height: 3rem;
+    margin: 0;
+    padding: 1rem ;
+    border-radius: 5rem ;
+
+}
+#addPhoto{
+    display:none;
+}

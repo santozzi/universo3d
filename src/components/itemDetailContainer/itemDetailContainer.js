@@ -14,7 +14,6 @@ export const ItemDetailContainer = () => {
             .then(prod => {
                 setProduct(prod)
 
-                console.log(prod);
             })
             .catch(err => navigate(`/error/${err}`))
             .finally(() => setLoading(false));
