@@ -1,21 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { FaMinus, FaPlus } from 'react-icons/fa';
-import { CartContext } from '../../../cartContext/cartContext';
+import { CartContext } from '../../cartContext/cartContext';
 import './count.css';
 export const Count = ({ itemCant }) => {
-
-
     const { item, quantity } = itemCant;
-
-
     const { increment, decrement, itemSize } = useContext(CartContext);
-
-    const [counter, setCounter] = useState(quantity);
     const [plusCounter, setPlusCounter] = useState(false);
     const [minusCounter, setMinusCounter] = useState(false);
     const [stockDisponible, setStockDisponible] = useState(0)
-
-
 
     useEffect(() => {
         setStockDisponible(item.stock - quantity)
@@ -31,8 +23,7 @@ export const Count = ({ itemCant }) => {
             setMinusCounter(false);
         }
 
-
-    }, [stockDisponible, quantity]);
+    }, [stockDisponible, quantity, item.id, item.stock, itemSize]);
 
     return (
         <>
@@ -42,13 +33,18 @@ export const Count = ({ itemCant }) => {
                         e.stopPropagation();
                         decrement(item.id);
 
-                    }} disabled={!minusCounter}><FaMinus /></button>
+                    }}
+                    disabled={!minusCounter}
+                    aria-label='restar uno'
+                ><FaMinus /></button>
                 <div className='increment-decrement-stock-n'>{itemSize(item.id)}</div>
                 <button className={`increment-decrement-stock-sign  ${plusCounter ? 'right' : 'disable-sign-r'}`}
                     onClick={(e) => {
                         e.stopPropagation();
                         increment(item.id)
-                    }} disabled={!plusCounter}><FaPlus /></button>
+                    }} disabled={!plusCounter}
+                    aria-label='sumar uno'
+                ><FaPlus /></button>
             </div>
             <p className='increment-decrement-disponible'>{`Disponibles: ${stockDisponible} unidades`}</p>
         </>

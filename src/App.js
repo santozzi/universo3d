@@ -1,18 +1,19 @@
 import './App.css';
 import { Header } from './components/header/header.js';
 import { BrowserRouter } from 'react-router-dom';
-import { CartContextProvider } from './components/cartContext/cartContext';
+import { CartContextProvider } from './components/cart/cartContext/cartContext';
 import { Router } from './routes/router';
-import { AuthContextProvider } from './components/authContext/authContext';
+import { AuthContextProvider } from './components/Auth/authContext/authContext';
 import { AuthContextProviderService } from './services/auth.services';
+import { Footer } from './components/footer/footer';
 
 function App() {
 
   return (
+    <BrowserRouter >
+      <AuthContextProvider>
+        <CartContextProvider>
 
-    <AuthContextProvider>
-      <CartContextProvider>
-        <BrowserRouter >
 
           <Header />
 
@@ -20,12 +21,12 @@ function App() {
           <main className='App'>
             <Router />
           </main>
+          <Footer />
 
-        </BrowserRouter>
-      </CartContextProvider>
-      <AuthContextProviderService />
-    </AuthContextProvider>
-
+        </CartContextProvider>
+        <AuthContextProviderService />
+      </AuthContextProvider>
+    </BrowserRouter >
 
   );
 }

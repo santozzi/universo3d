@@ -1,8 +1,4 @@
 import {
-    getCategoryById as getCategoryByIdModel
-} from '../models/pruebasLocales/products.model';
-
-import {
     getProducts as getProductsModel,
     getProductById as getProductByIdModel,
     getProductsByCategory as getProductsByCategoryModel,
@@ -10,6 +6,8 @@ import {
     updateProductModel,
     updateProductFieldModel,
     saveProduct,
+    getProductsPagerModel,
+    getProductsByCategoryPagerModel
 } from '../models/firebase/products.model';
 
 export const getProducts = () => {
@@ -31,12 +29,16 @@ export const removeProductByIdService = (id) => {
 export const updateProductService = (product) => {
     return updateProductModel(product);
 }
-export const getCategoryById = (id) => {
-    return getCategoryByIdModel(id);
-}
+
 export const updateProductFieldService = (id, fields) => {
     return updateProductFieldModel(id, fields)
 }
 export const saveProductService = (product) => {
     return saveProduct(product);
+}
+export const getProductsPagerService = (page, cantProd) => {
+    return getProductsPagerModel(page, cantProd);
+}
+export const getProductsByCategoryPagerService = (page, cantProd, category) => {
+    return getProductsByCategoryPagerModel(page, cantProd, category);
 }

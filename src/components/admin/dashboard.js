@@ -10,8 +10,9 @@ import { ImageList } from './imageList/imageList';
 import { useForm } from "react-hook-form";
 
 export const Dashboard = () => {
-
+    //valida formulario
     const { register, handleSubmit, formState: { errors } } = useForm();
+
 
     const [imageItem, setImageItem] = useState(noneImage);
     const [isImage, setIsImage] = useState(false)
@@ -25,51 +26,7 @@ export const Dashboard = () => {
         getUrlFileStorageService(file).then(url => setImageItem(url));
 
     }
-    /* 
-    const [progress, setProgress] = useState(0)
-    const archivoHandler = (e) => {
-        e.preventDefault();
-        const file = e.target.files[0];
-        console.log("nombre del archivo cargado:", file);
-        uploadFailes(file);
-    }
-    const uploadFailes = (file) => {
-        if (!file) return;
-        const storargeRef = ref(storage, `/files/${file.name}`);
-        const uploadTask = uploadBytesResumable(storargeRef, file)
-        const urlDownload = getDownloadURL(storargeRef);
-        console.log(urlDownload);
 
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-                const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-                setProgress(prog);
-            },
-            (err) => console.log(err),
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref)
-                    .then(url => console.log(url))
-
-            }
-        )
-    }
-
-
-   
-       <form>
-                <input type="file" onChange={archivoHandler} />
-
-                <button type='submit'>enviar</button>
-            </form>
-            <hr />
-            <h1>{`Upload ${progress}%`}</h1>
-    
-    
-
-
-    
-            */
     const editar = ({ target: { name, value } }) => {
 
         setItem(f => ({ ...f, [name]: value }))
@@ -123,9 +80,10 @@ export const Dashboard = () => {
                     setItem(producto);
                 })
                 .catch((err) => { console.log('error al obtener producto') });
-
         }
-    }, [imageItem])
+    }, [])
+
+
     const [age, setAge] = React.useState('');
 
     const handleChange = (event) => {

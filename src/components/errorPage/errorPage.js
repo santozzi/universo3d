@@ -1,12 +1,11 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-
 import './errorPage.css'
+
 export const ErrorPage = () => {
     let { mensaje = 'La página no existe' } = useParams();
     let navigate = useNavigate();
     const goToHome = () => {
-
         navigate('/');
     }
     return (

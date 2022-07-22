@@ -19,6 +19,8 @@ export const getOrderById = (id) => {
         getDoc(biciRef).then((snapshop) => {
             if (snapshop.exists()) {
                 resolve({ id: snapshop.id, ...snapshop.data() })
+            } else {
+                reject({ message: "La orden no existe" });
             }
         }).catch(err => reject(err));
     })
@@ -33,7 +35,7 @@ export const saveOrderModel = (order) => {
         addDoc(collection(db, TABLE), order)
 
             .then(dato => {
-                order.items.map(
+                order.items.forEach(
                     (item) => {
                         getProductById(item.id).then(
                             producto => {

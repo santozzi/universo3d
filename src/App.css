@@ -2,16 +2,22 @@
   padding: 0;
   margin: 0;
 }
-
+html{
+  height: 100%;
+}
 body{
 
 
-  height: 100vh;
+  min-height: 100%;
 
+}
+footer{
+  margin-top:auto;
 }
 
 .App{
-  background-color: #00000050;
+  background-color: #F2F3F7;
+
 
 }
 main{

@@ -1,20 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { CartContext } from '../cartContext/cartContext'
+import { CartContext } from './cartContext/cartContext'
 import { ItemCart } from './itemCart/itemCart';
 import { AuthContextService } from '../../services/auth.services';
 import './cart.css';
 import { Box } from '@mui/system';
-import { Button, Modal, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import Swal from 'sweetalert2';
 
 export const Cart = () => {
     const { orderGenerator, findAllItems, totalPlusPrice, clear } = useContext(CartContext);
     const { user, isLogin } = useContext(AuthContextService);
-    const [verOrden, setVerOrden] = useState(true);
-    const verOrdenClose = () => {
-        setVerOrden(prev => !prev);
-    }
     let navigate = useNavigate();
     const arreglo = findAllItems();
     const orderGen = (buyer) => {
@@ -24,13 +20,8 @@ export const Cart = () => {
                 `Si esta registrado vaya a ingresar sino a registarse`,
                 'warning'
             )
-            console.log('Para generar la orden de compra debe ser un usuario registrado');
         } else {
-
             orderGenerator(buyer).then(dato => {
-
-                console.log('tu codigo de seguimento es: ', dato)
-
                 Swal.fire({
                     title: 'Gracias por tu compra!!!!',
                     text: `Tu código de seguimiento es ${dato}`,
@@ -41,20 +32,11 @@ export const Cart = () => {
                     confirmButtonText: 'Ver orden'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        console.log('Estoy en confirmado');
                         navigate(`/orders/${dato}`);
-
-
-
                     }
                 })
-
                 clear();
             });
-
-
-
-
         }
     }
 
@@ -65,16 +47,14 @@ export const Cart = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                flexDirection: 'column'
-            }}>
+                flexDirection: 'column',
 
+            }}>
                 {
                     findAllItems().map(itemCant => (
                         <ItemCart key={itemCant.item.id} itemCant={itemCant} />
                     ))
-
                 }
-
                 <Box
                     sx={{
                         display: 'flex',
@@ -116,8 +96,6 @@ export const Cart = () => {
                 <Link className='cart-link-to-home' to='/'>ir a home</Link>
             </div>
         }
-
-
     </>
 
 

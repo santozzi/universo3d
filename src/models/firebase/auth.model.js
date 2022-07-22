@@ -15,42 +15,6 @@ const db = getFirestore(firebaseApp);
 const TABLE = 'admins';
 
 
-//crea un nuevo usarie con email y pasword
-// TODO: trabajar execpciones de todo
-export const newUserModel = (user) => {
-    return new Promise((resolve, reject) => {
-        const email = user.email;
-        const password = user.password;
-        createUserWithEmailAndPassword(auth, user.email, user.password)
-            .then((credential) => {
-                // resolve(credential)
-                /*   LO COMENTO PARA PODER PROBAR CON CUALQUIER MAIL SIN PREOCUPARME DE QUE A ALGUIEN LE LLEGUE EL MAIL.
-                 sendEmailVerification(credential.user)
-                     .then(() => console.log('envio de verificacion'))
-                     .catch(() => console.log('La verificacion no fue enviada'));
-                */
-                //actualizo los valores de la credencial con el user
-                updateProfileModel(user);
-
-                //creo un usuario nuevo con los valores de 
-                saveUserService({ id: credential.user.uid, ...user }).then(user => {
-                    resolve(`Usuario ${user.id}  fue creado con éxito`)
-
-                    signOutModel().then(() => sigInModel(email, password).then(() => console.log('reinicio de sesion listo')));
-                    //login despues de logout
-                }).catch(err => reject(err));
-
-
-
-
-            })
-            .catch(err => console.log(err));
-
-
-
-    });
-
-}
 //loguearse con un email y un password
 
 //TODO: enviar solo mensaje con then y catch
@@ -58,53 +22,40 @@ export const sigInModel = (user, password) => {
     return signInWithEmailAndPassword(auth, user, password);
 }
 export const updateProfileModel = (user) => {
+    return new Promise((resolve, reject) => {
+        updateProfile(auth.currentUser, {
+            displayName: `${user.name} ${user.lastName}`,
+            photoURL: user.photoURL,
 
-    updateProfile(auth.currentUser, {
-        displayName: `${user.name} ${user.lastName}`,
-        photoURL: user.photoURL,
 
+        }).then(() => {
+            resolve({ message: 'Perfil actualizado con éxito' });
+        }).catch((error) => {
+            reject({ message: 'Ocurrio un error con el perfil' });
+            console.log(error.message);
+        });
 
-    }).then(() => {
-        console.log('Perfil actualizado con éxito');
-    }).catch((error) => {
-        console.log('Ocurrio un error con el perfil', error.message);
     });
 
-}
-export const verificationEmailModel = (email) => {
 
 }
-
 //cerrar sesion
 export const signOutModel = () => {
 
     return new Promise((resolve, reject) => {
         signOut(auth)
-            .then(() => resolve('Sesión cerrada con éxito'))
-            .catch(() => reject('Error al cerrar sesión'));
+            .then(() => resolve({ message: 'Sesión cerrada con éxito' }))
+            .catch(() => reject({ message: 'Error al cerrar sesión' }));
     });
 
 }
-//esto es para sacar
-export const getUserModel = () => {
-    return new Promise((resolve, reject) => {
-        onAuthStateChanged(auth, (credential) => {
-
-            resolve(credential);
-
-
-
-        })
-    }
-    )
-}
-
-
-
-
-
-//componente
-
+/**
+ * 
+ * 
+ *            COMPONENTE
+ * 
+ * 
+ */
 
 
 export const AuthContextModel = createContext();
@@ -113,7 +64,6 @@ export const AuthContextProviderModel = ({ children }) => {
     const [user, setUser] = useState({});
     const [isLogin, setIsLogin] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-    const [sesion, setSesion] = useState({})
 
     //loguearse con una cueta de google
     const signInWithGoogleModel = () => {
@@ -121,9 +71,10 @@ export const AuthContextProviderModel = ({ children }) => {
         return new Promise((resolve, reject) => {
             signInWithPopup(auth, googleProvider)
                 .then(credential => {
-                    resolve(credential.user);
+                    resolve({ message: `El usuario ${credential.user.displayName} ingreso con éxito` });
                     setCredential(credential.user);
-
+                    //TODO: aca verificar si la cuenta esta verificada y si la cuenta esta registrada en usuarios
+                    // si no esta registrada mandarlo por mensaje en el resolve para que aparezca un formulario para poner su nombre, apellido y telefono
                 })
                 .catch(error => {
 
@@ -134,14 +85,13 @@ export const AuthContextProviderModel = ({ children }) => {
                     const email = error.customData.email;
                     // The AuthCredential type that was used.
                     const credential = GoogleAuthProvider.credentialFromError(error);
-                    reject(`
-                     Error de signInWithGoogle:
-                     Codigo:     ${errorCode}
-                     Mensaje:    ${errorMessage}
-                     Email:      ${email}
-                     Credencial: ${credential}
-                
-                `);
+                    reject({
+                        message: errorMessage,
+                        code: errorCode,
+                        email: email,
+                        credential: credential
+                    }
+                    );
 
                 });
         });
@@ -151,100 +101,69 @@ export const AuthContextProviderModel = ({ children }) => {
     const newUserModel = (user) => {
         return new Promise(async (resolve, reject) => {
 
-            const email = user.email;
             const password = user.password;
 
             try {
                 const credential = await createUserWithEmailAndPassword(auth, user.email, user.password);
+                /*   LO COMENTO PARA PODER PROBAR CON CUALQUIER MAIL SIN PREOCUPARME DE QUE A ALGUIEN LE LLEGUE EL MAIL.
+                  sendEmailVerification(credential.user)
+                      .then(() => console.log('envio de verificacion'))
+                      .catch(() => console.log('La verificacion no fue enviada'));
+                 */
                 await updateProfileModel(user);
                 const { email, name, lastName, phoneNumber } = user;
                 const newUser = await saveUserService({ id: credential.user.uid, email, name, lastName, phoneNumber });
                 setUser(newUser);
                 await signOutModel();
-                const newCredential = await sigInModel(email, password);
-                resolve("Le estará llegando un email, para verificar su cuenta, si no lo ve, puede que este en spam, y si tampoco está, pruebe poniendo su dirección de email.");
+                await sigInModel(email, password);
+                resolve({ message: "Le estará llegando un email, para verificar su cuenta, si no lo ve, puede que este en spam, y si tampoco está, pruebe poniendo su dirección de email." });
             }
             catch (err) {
-                reject(`Error al guardar el usuario y.. esto tambien:  ${err.message}`);
+                reject({ message: err.message });
             }
-
         });
-
-
     }
     //loguearse con un email y un password
-
-
     const updateProfileModel = (user) => {
         return new Promise((resolve, reject) => {
             updateProfile(auth.currentUser, {
                 displayName: `${user.name} ${user.lastName}`,
                 photoURL: user.photoURL,
-
-
             }).then(() => {
-                resolve(console.log('Perfil actualizado con éxito'));
+                resolve({ message: 'Perfil actualizado con éxito' });
             }).catch((error) => {
-                reject(console.log('Ocurrio un error con el perfil', error.message));
+                reject({ message: error.message })
             });
-
-
-
-        })
-
-
+        });
     }
-
-
-
-
 
     useEffect(() => {
         const isAdminModel = (id) => {
-
             const biciRef = doc(db, TABLE, id);
-
-
             getDoc(biciRef).then((snapshop) => {
                 if (snapshop.exists()) {
                     setIsAdmin(true)
 
                 } else {
                     setIsAdmin(false);
-
                 }
             }).catch(err => console.log('Error al pedir documento en context de auth.model', err));
-
-
         }
+
+
+        //Escucha los cambio en la sesión del usuario
         const unsuscribe = onAuthStateChanged(auth, (credential) => {
             setCredential(credential);
             if (credential === null) {
                 setIsLogin(false);
                 setIsAdmin(false);
             } else {
-
                 getUserByIdService(credential.uid).then(usuario => {
                     setUser(usuario)
-                    console.log('usuario en authContext: ', usuario);
 
                 }).catch(err => console.log('error de getCredential: ', err.message));
-                /*  const usuario = {
-                      id: credential.uid,
-                      name: credential.displayName,
-                      photoURL: credential.photoURL,
-                      email: credential.email,
-                      phoneNumber: credential.phoneNumber,
-                      isEmailVerified: credential.emailVerified
-                  }
-                  setUser(usuario);
-  */
                 setIsLogin(true)
                 isAdminModel(credential.uid)
-                //console.log(user);
-
-
-
             }
 
         });
