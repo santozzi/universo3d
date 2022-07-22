@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/universo3d/static/css/main.13adec0f.css",
+    "main.js": "/universo3d/static/js/main.99930b90.js",
+    "static/media/errorImage.png": "/universo3d/static/media/errorImage.6166af862399c01f643f.png",
+    "static/media/errorImagev.png": "/universo3d/static/media/errorImagev.f6623b37952ac2f61b90.png",
+    "static/media/CarroVacio.jpg": "/universo3d/static/media/CarroVacio.b98661cbdb12e1afac2d.jpg",
+    "index.html": "/universo3d/index.html",
+    "main.13adec0f.css.map": "/universo3d/static/css/main.13adec0f.css.map",
+    "main.99930b90.js.map": "/universo3d/static/js/main.99930b90.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.13adec0f.css",
+    "static/js/main.99930b90.js"
+  ]
+}
