@@ -11,6 +11,7 @@ export const Router = () => {
   return (
     <Routes>
       <Route path='/' element={<ItemListContainer />} />
+      <Route path='/universo3d' element={<ItemListContainer />} />
       <Route path='/category/:id' element={<ItemListContainer />} />
       <Route path='/item/:id' element={<ItemDetailContainer />} />
       <Route path='/orders/:id' element={<OrderContainer />} />

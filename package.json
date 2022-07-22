@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "author": "Sergio Antozzi",
+  "homepage": "https://santozzi.github.io/universo3d",
   "license": "MIT",
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -26,6 +27,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -60,6 +63,7 @@
   },
   "devDependencies": {
     "babel-plugin-named-exports-order": "^0.0.2",
+    "gh-pages": "^4.0.0",
     "prop-types": "^15.8.1",
     "webpack": "^5.73.0"
   }

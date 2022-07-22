@@ -100,6 +100,7 @@ __Error en versión para mobile__
 * [react-hook-form](https://react-hook-form.com/) para la validación de formularios
 * [react-easy-crop](https://valentinh.github.io/react-easy-crop/) para recortar una foto antes de subirla al servidor
 
-
+### Muestra en github page
+*    [universo3d](https://santozzi.github.io/universo3d/)
 
 
