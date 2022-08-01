@@ -1,16 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import noneImage from '../../image/noneimage.png';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import './imageContainer.css';
-import { getImagesModel, getUrlFileStorageModel } from '../../../../../../models/firebase/image.model';
+import { getUrlFileStorageModel } from '../../../../../../models/firebase/image.model';
 export const ImageContainer = ({ pictureUrl, clickClose, clickImage }) => {
     const [pictureURL, setPictureUR] = useState('');
     //const url = await getUrlFileStorageModel(pictureUrl);
 
-    const deletePicture = async () => {
 
-        console.log(pictureUrl);
-    }
     useEffect(() => {
         getUrlFileStorageModel(pictureUrl).then(url => {
             setPictureUR(url)

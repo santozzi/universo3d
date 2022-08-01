@@ -8,7 +8,7 @@ __Universo 3d__ es un proyecto de tipo e-commerce FullStack, creado en ReactJs, 
 El mismo se encuentra en etapa de crecimiento, la intención es agregar todos los servicios de Firebase, medios de pago y auto gestión.
 
 ## Instalación
-
+Debe tener instalado node v16.15 y npm v8.5.5 o superior
 Puede clonar el proyecto con git utilizando el comando:
 ```git 
   git clone https://github.com/santozzi/universo3d.git

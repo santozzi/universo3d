@@ -8,8 +8,8 @@ import { ImageListItem } from '@mui/material';
 
 export const ImageList = ({ clickImage }) => {
     //Inicio de estados para el componente cropEasy
-    const [file, setFile] = useState(null);
-    const [photoURL, setPhotoURL] = useState('');
+    // const [file, setFile] = useState(null);
+    //   const [photoURL, setPhotoURL] = useState('');
     const [openCrop, setOpenCrop] = useState(false);
     const [urlBase, setUrlBase] = useState('');
     //fin de estados para el componente cropEasy
@@ -33,10 +33,10 @@ export const ImageList = ({ clickImage }) => {
         //TODO: recibir promesa para saber si se agrego e informar al usuario. al igual que si hubo un error
         addFileService(file);
     }
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-    }
+    /*   const handleSubmit = async (e) => {
+          e.preventDefault();
+  
+      } */
     //fin constantes para el componente cropEasy
 
 

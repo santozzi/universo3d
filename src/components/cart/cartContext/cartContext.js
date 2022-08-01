@@ -6,10 +6,10 @@ export const CartContextProvider = ({ children }) => {
     //itemInCart es un arreglo de {Item, cantidad}
 
     const [itemsInCart, setItemsInCart] = useState([]);
-    const [verOrden, setVerOrden] = useState(true);
-    const verOrdenClose = () => {
-        setVerOrden(prev => !prev);
-    }
+    //  const [verOrden, setVerOrden] = useState(true);
+    /*     const verOrdenClose = () => {
+            setVerOrden(prev => !prev);
+        } */
     /**
      * addItem: agrega cierta cantidad de items al carro de compras
      * @param {*} item 
