@@ -92,7 +92,6 @@ const CropEasy = ({ urlBase: photoURL, cropFunction, setPhotoURL, setFile, setOp
 
 export default CropEasy;
 
-/* const zoomPercent = (value) => {
+const zoomPercent = (value) => {
   return `${Math.round(value * 100)}%`;
 };
- */

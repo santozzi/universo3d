@@ -1,5 +1,5 @@
 import { firebaseApp, storage } from './conexion';
-import { deleteObject, getDownloadURL, getStorage, listAll, ref } from 'firebase/storage';
+import { deleteObject, getDownloadURL, getStorage, listAll, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 
 const storge = getStorage(firebaseApp);
@@ -23,8 +23,8 @@ export const addFileModel = async (file) => {
     const uuid = uuidv4();
     const extensionFile = file.name.split('.')[1];
     const newNameFile = `${uuid}.${extensionFile}`;
-    ref(storage, `${DIR}/${newNameFile}`);
-    //const respuesta = await uploadBytes(fileRef, file)
+    const fileRef = ref(storage, `${DIR}/${newNameFile}`);
+    const respuesta = await uploadBytes(fileRef, file);
     console.log(file.path_);
 
 }

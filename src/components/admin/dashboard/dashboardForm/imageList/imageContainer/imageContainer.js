@@ -11,7 +11,7 @@ export const ImageContainer = ({ pictureUrl, clickClose, clickImage }) => {
     useEffect(() => {
         getUrlFileStorageModel(pictureUrl).then(url => {
             setPictureUR(url)
-            console.log('esto es en useeffect', pictureURL);
+
 
         });
 
