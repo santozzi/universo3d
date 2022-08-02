@@ -8,8 +8,8 @@ import { ImageListItem } from '@mui/material';
 
 export const ImageList = ({ clickImage }) => {
     //Inicio de estados para el componente cropEasy
-    // const [file, setFile] = useState(null);
-    //   const [photoURL, setPhotoURL] = useState('');
+    const [file, setFile] = useState(null);
+    const [photoURL, setPhotoURL] = useState('');
     const [openCrop, setOpenCrop] = useState(false);
     const [urlBase, setUrlBase] = useState('');
     //fin de estados para el componente cropEasy
